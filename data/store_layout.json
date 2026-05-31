@@ -1,0 +1,77 @@
+{
+  "stores": [
+    {
+      "store_id": "STORE_BLR_002",
+      "store_name": "Brigade_Bangalore",
+      "city": "Bangalore",
+      "legacy_store_id": "ST1008",
+      "open_hours": {
+        "open": "10:00",
+        "close": "22:00",
+        "timezone": "Asia/Kolkata"
+      },
+      "cameras": [
+        {
+          "camera_id": "CAM_ENTRY_01",
+          "type": "entry",
+          "description": "Entry/Exit threshold camera",
+          "zones_covered": ["ENTRY"]
+        },
+        {
+          "camera_id": "CAM_FLOOR_01",
+          "type": "floor",
+          "description": "Main floor zone coverage",
+          "zones_covered": [
+            "GOOD_VIBES",
+            "DERMDOC",
+            "MINIMALIST",
+            "AQUALOGICA",
+            "LAKME_SKIN",
+            "EB_KOREAN",
+            "FACE_SHOP",
+            "MAYBELLINE",
+            "FACES_CANADA",
+            "LAKME_MAKEUP",
+            "COLORBAR_SUGAR",
+            "SWISS_BEAUTY",
+            "RENEE_NY_BAE",
+            "ALPS_GOODNESS",
+            "STREAX",
+            "FRAGRANCE",
+            "MAKEUP_UNIT",
+            "ACCESSORIES"
+          ]
+        },
+        {
+          "camera_id": "CAM_BILLING_01",
+          "type": "billing",
+          "description": "Billing counter area",
+          "zones_covered": ["BILLING", "PMU"]
+        }
+      ],
+      "zones": [
+        {"zone_id": "ENTRY", "label": "Store Entry", "category": "traffic"},
+        {"zone_id": "BILLING", "label": "Cash Counter", "category": "checkout"},
+        {"zone_id": "PMU", "label": "PMU Unit", "category": "service"},
+        {"zone_id": "GOOD_VIBES", "label": "Good Vibes", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "DERMDOC", "label": "DermDoc", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "MINIMALIST", "label": "Minimalist", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "AQUALOGICA", "label": "Aqualogica", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "LAKME_SKIN", "label": "Lakme Skin", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "EB_KOREAN", "label": "EB Korean", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "FACE_SHOP", "label": "The Face Shop", "category": "skincare", "dep_name": "skin"},
+        {"zone_id": "MAYBELLINE", "label": "Maybelline", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "FACES_CANADA", "label": "Faces Canada", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "LAKME_MAKEUP", "label": "Lakme", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "COLORBAR_SUGAR", "label": "Colorbar + Sugar", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "SWISS_BEAUTY", "label": "Swiss Beauty", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "RENEE_NY_BAE", "label": "Renee NY Bae", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "ALPS_GOODNESS", "label": "Alps Goodness", "category": "hair", "dep_name": "hair"},
+        {"zone_id": "STREAX", "label": "Streax", "category": "hair", "dep_name": "hair"},
+        {"zone_id": "FRAGRANCE", "label": "Fragrance", "category": "fragrance", "dep_name": "fragrance"},
+        {"zone_id": "MAKEUP_UNIT", "label": "Makeup Unit", "category": "makeup", "dep_name": "makeup"},
+        {"zone_id": "ACCESSORIES", "label": "Accessories", "category": "accessories", "dep_name": "personal-care"}
+      ]
+    }
+  ]
+}

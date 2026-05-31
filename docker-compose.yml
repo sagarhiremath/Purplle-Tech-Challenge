@@ -1,0 +1,49 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:////app/data/store_intelligence.db
+      - DATA_DIR=/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  pipeline:
+    build: .
+    profiles: ["pipeline"]
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./CAM 1.mp4:/app/CAM 1.mp4:ro
+      - ./CAM 2.mp4:/app/CAM 2.mp4:ro
+      - ./CAM 3.mp4:/app/CAM 3.mp4:ro
+      - ./CAM 4.mp4:/app/CAM 4.mp4:ro
+      - ./CAM 5.mp4:/app/CAM 5.mp4:ro
+    environment:
+      - DATA_DIR=/app/data
+    command: >
+      bash -c "python scripts/convert_pos.py &&
+      python scripts/setup_clips.py &&
+      python -m pipeline.detect --clips-dir /app/data/clips --output /app/data/generated_events.jsonl --clip-date 2026-04-10T10:00:00Z --frame-skip 10 &&
+      python scripts/ingest_events.py --file /app/data/generated_events.jsonl --api-url http://api:8000"
+
+  dashboard:
+    build: .
+    profiles: ["dashboard"]
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      - PYTHONPATH=/app
+    command: python dashboard/live_dashboard.py --api-url http://api:8000
+    stdin_open: true
+    tty: true

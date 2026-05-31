@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Store Intelligence · Brigade Bangalore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/dashboard/static/styles.css" />
+</head>
+<body>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <header class="header">
+    <div class="header-left">
+      <div class="brand-mark">P</div>
+      <div>
+        <p class="eyebrow">Offline Store Intelligence</p>
+        <h1>Brigade Bangalore</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="live-pill" id="livePill">
+        <span class="pulse"></span>
+        <span id="liveLabel">Connecting…</span>
+      </div>
+      <div class="date-chip" id="dateChip">—</div>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="hero-metric card">
+      <div class="hero-content">
+        <p class="label">North Star · Conversion Rate</p>
+        <div class="hero-value-row">
+          <span class="hero-value" id="conversionRate">—</span>
+          <span class="hero-unit">%</span>
+        </div>
+        <p class="hero-sub" id="conversionSub">Visitors who completed a purchase</p>
+      </div>
+      <div class="hero-chart-wrap">
+        <canvas id="conversionChart"></canvas>
+        <div class="chart-center">
+          <span id="convertedCount">0</span>
+          <small>converted</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="kpi card" data-kpi="visitors">
+        <p class="kpi-label">Unique Visitors</p>
+        <p class="kpi-value" id="uniqueVisitors">—</p>
+        <p class="kpi-hint">Customer entries today</p>
+      </article>
+      <article class="kpi card" data-kpi="queue">
+        <p class="kpi-label">Billing Queue</p>
+        <p class="kpi-value" id="queueDepth">—</p>
+        <p class="kpi-hint">People waiting now</p>
+      </article>
+      <article class="kpi card" data-kpi="abandon">
+        <p class="kpi-label">Queue Abandonment</p>
+        <p class="kpi-value" id="abandonRate">—</p>
+        <p class="kpi-hint">Left before checkout</p>
+      </article>
+      <article class="kpi card" data-kpi="health">
+        <p class="kpi-label">System Status</p>
+        <p class="kpi-value status-text" id="systemStatus">—</p>
+        <p class="kpi-hint" id="lastEvent">Last event —</p>
+      </article>
+    </section>
+
+    <section class="panel card funnel-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Conversion Funnel</h2>
+          <p class="panel-sub">Where customers drop off before purchase</p>
+        </div>
+      </div>
+      <div class="funnel-track" id="funnelTrack"></div>
+      <canvas id="funnelChart" height="80"></canvas>
+    </section>
+
+    <section class="panel card heatmap-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Zone Heatmap</h2>
+          <p class="panel-sub">Visit frequency & dwell intensity · <span id="confidenceBadge" class="badge">—</span></p>
+        </div>
+      </div>
+      <div class="heatmap-grid" id="heatmapGrid"></div>
+      <div class="heatmap-legend">
+        <span>Low traffic</span>
+        <div class="legend-bar"></div>
+        <span>High traffic</span>
+      </div>
+    </section>
+
+    <section class="panel card dwell-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Avg Dwell by Zone</h2>
+          <p class="panel-sub">Time spent in each store zone (seconds)</p>
+        </div>
+      </div>
+      <canvas id="dwellChart" height="120"></canvas>
+    </section>
+
+    <section class="panel card anomalies-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Live Anomalies</h2>
+          <p class="panel-sub">Operational alerts requiring action</p>
+        </div>
+        <span class="anomaly-count" id="anomalyCount">0</span>
+      </div>
+      <div class="anomaly-list" id="anomalyList"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Store Intelligence API · <code id="storeId">STORE_BLR_002</code></span>
+    <span>Auto-refresh · <span id="refreshTimer">3</span>s · Updated <span id="lastUpdated">—</span></span>
+  </footer>
+
+  <script src="/dashboard/static/app.js"></script>
+</body>
+</html>
