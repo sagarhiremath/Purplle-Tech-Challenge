@@ -105,11 +105,3 @@ pytest --cov=app --cov=pipeline --cov-report=term-missing
 
 - Brigade POS CSV → `data/pos_transactions.csv` (`STORE_BLR_002`)
 - Store layout image → `data/store_layout.json` zone definitions
-
-## Missing Dataset Items
-
-Add these when you receive the official challenge ZIP:
-
-- Official `sample_events.jsonl` and `assertions.py` from the dataset bundle (if different from ours)
-
-CCTV clips (`CAM 1.mp4`–`CAM 5.mp4`) are linked automatically via `scripts/setup_clips.py`.
